@@ -32,7 +32,7 @@ document.getElementsByTagName("form")[0].addEventListener("submit", (e) => {
   // Stop the timout when the user send a message
   // To fix the issue when the typing message doesn't appear when the user starts typing before 2 sec have passed.
   onTypingTimeOut = false;
-  clearTimeout(onTypingTimeOut);
+  clearTimeout(typingTimeout);
 });
 
 document.getElementById("message").addEventListener("keypress", (event) => {
