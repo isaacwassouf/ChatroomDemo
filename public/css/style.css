@@ -1,0 +1,110 @@
+html body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: aliceblue;
+  }
+
+  .container {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 8%;
+    height: 100%;
+    text-align: center;
+  }
+
+  .container h3 {
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem;
+    color: #495057;
+  }
+
+  /* 
+      .container textarea {
+          width: 80%;
+          max-width: 100%;
+          padding-left: 10px;
+          padding-top: 10px;
+      } */
+
+  #chat {
+    max-height: 300px;
+    min-height: 300px;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-bottom: 5px;
+    overflow-y: auto;
+    background-color: #ffffff;
+  }
+
+  #chat::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  #chat::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
+  #chat::-webkit-scrollbar-thumb {
+    background: #495057;
+    border-radius: 10px;
+  }
+
+  #chat::-webkit-scrollbar-thumb:hover {
+    background: rgb(207, 207, 207); 
+  }
+  
+
+  #chat ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+  }
+
+  #chat ul li {
+    border-left: 5px solid #495057;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 100%;
+    word-wrap: break-word;
+    font: 400 13.3333px Arial;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: 400;
+    font-stretch: normal;
+    font-size: 13.3333px;
+    line-height: normal;
+    font-family: monospace;
+  }
+
+
+  .container input[type="text"] {
+    width: 80%;
+  }
+
+  .container input[type="submit"] {
+    font-family: 'Roboto', sans-serif;
+    width: 30%;
+    margin-top: 5px;
+    background-color: #495057;
+    color: #ced4da;
+    border-style: none;
+    border-radius: 0.2rem;
+    height: 1.7rem;
+    cursor: pointer;
+  }
+
+
+  .container input[type="submit"]:hover {
+    background-color: #383d42;
+  }

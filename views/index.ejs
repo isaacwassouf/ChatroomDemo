@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h3> Chat Demo</h3>
+    <form>
+      <!-- <textarea name="chat" id="chat" cols="30" rows="10" readonly></textarea> </br> -->
+      <div id="chat">
+        <ul>
+        </ul>
+      </div>
+      <input type="text" name="message" id="message"></br>
+      <input type="submit" id="submitBtn" value="Submit">
+    </form>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/public/js/chat.js"></script>
+</body>
+
+</html>
