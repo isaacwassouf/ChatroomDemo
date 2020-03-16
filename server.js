@@ -22,7 +22,6 @@ io.on("connection", (socket)=>{
     });
 
     socket.on("typing", ()=>{
-      //Send to all socket except the sender
       socket.broadcast.emit("typing", username);
     });
 
@@ -33,7 +32,6 @@ io.on("connection", (socket)=>{
 
     socket.on("msg", (msg)=>{
       io.emit("msg",{from: username,msg});
-      socket.broadcast.emit("stopTyping");
     });
 
     socket.on("disconnect", ()=>{

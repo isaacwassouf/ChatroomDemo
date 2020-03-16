@@ -16,7 +16,15 @@ const getUsername = function(){
   }
 }
 
-window.onload = getUsername;
+const StopUserTyping = function(){
+  onTypingTimeOut = false;
+  socket.emit("stopTyping");
+}
+
+window.onload = function(){
+  getUsername();
+  this.document.getElementById("message").focus();
+}
 
 socket.on("usernameConnected", (username) => {
   const newMessage = document.createElement("li");
@@ -31,25 +39,19 @@ document.getElementsByTagName("form")[0].addEventListener("submit", (e) => {
 
   // Stop the timout when the user send a message
   // To fix the issue when the typing message doesn't appear when the user starts typing before 2 sec have passed.
-  onTypingTimeOut = false;
   clearTimeout(typingTimeout);
+  StopUserTyping();
 });
 
 document.getElementById("message").addEventListener("keypress", (event) => {
   if (onTypingTimeOut) {
     clearTimeout(typingTimeout);
-    typingTimeout = setTimeout(() => {
-      onTypingTimeOut = false;
-      socket.emit("stopTyping");
-    }, 2000);
+    typingTimeout = setTimeout(StopUserTyping, 2000);
   } else {
     onTypingTimeOut = true;
     socket.emit("typing");
 
-    typingTimeout = setTimeout(() => {
-      onTypingTimeOut = false;
-      socket.emit("stopTyping");
-    }, 2000);
+    typingTimeout = setTimeout(StopUserTyping, 2000);
   }
 });
 
@@ -65,7 +67,7 @@ socket.on("typing", (username) => {
 
 socket.on("stopTyping", () => {
   // Check if the typing message is displayed, in case it got deleted when the server emited "msg" event
-  //before the setTimeOut callback is called. 
+  //before the setTimeOut callback is called. or the callback was called before the message was sent.
   const typingMessage = document.querySelector(".typing");
   if (typingMessage) {
     onTypingMessageShown = false;
