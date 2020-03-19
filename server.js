@@ -31,7 +31,7 @@ io.on("connection", (socket)=>{
     })
 
     socket.on("msg", (msg)=>{
-      io.emit("msg",{from: username,msg});
+      io.emit("msg",{from: username, id: socket.id ,msg});
     });
 
     socket.on("disconnect", ()=>{

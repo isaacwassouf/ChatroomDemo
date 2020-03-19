@@ -29,6 +29,9 @@ window.onload = function(){
 socket.on("usernameConnected", (username) => {
   const newMessage = document.createElement("li");
   newMessage.innerHTML = `${username} Just Connected`;
+  newMessage.style.textDecoration= "underline dotted";
+  newMessage.style.backgroundColor = "#495057";
+  newMessage.style.color = "#ffffff";
   chat.appendChild(newMessage);
 })
 
@@ -77,9 +80,13 @@ socket.on("stopTyping", () => {
 
 socket.on("msg", (msgObj) => {
   const TypingMessage = document.querySelector(".typing");
+
   const newMessage = document.createElement("li");
   newMessage.innerHTML = `${msgObj.from}: ${msgObj.msg}`;
   newMessage.classList.add("message");
+  if (msgObj.id === socket.id)
+      newMessage.style.float = "right";
+
   document.getElementById("message").value = "";
 
   typeof TypingMessage != "undefined" ? chat.insertBefore(newMessage, TypingMessage)
