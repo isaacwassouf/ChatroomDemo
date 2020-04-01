@@ -89,12 +89,32 @@ html body {
   }
 
 
-  .container input[type="text"] {
+  #message-input{
     width: 80%;
-    height: 25px;
+    position: relative;
+    display: inline-block;
+  }
+
+  #message-input i{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #495057;
+    cursor: pointer;
+  }
+
+  .container input[type="text"] {
+    width: 100%;
+    height: 29px;
     border-radius: 0.25rem;
     padding-left: 10px;
     border: 1px solid #ced4da;
+    box-sizing: border-box;
+    padding-right: 30px;
+  }
+
+  .container input[type="file"]{
+    display: none;
   }
 
   .container input[type="submit"] {
@@ -107,9 +127,8 @@ html body {
     height: 35px;
     cursor: pointer;
     font-size: 0.8rem;
-    width: 15%;
+    width: fit-content;
     min-width: 10%;
-    max-width: 15%;
     text-transform: uppercase;
     letter-spacing: 1.9px;
     font-weight: 500;
