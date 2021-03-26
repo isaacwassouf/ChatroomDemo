@@ -14,8 +14,7 @@
 <body>
   <div class="container">
     <h3> Chat Demo</h3>
-    <form>
-      <!-- <textarea name="chat" id="chat" cols="30" rows="10" readonly></textarea> </br> -->
+    <form autocomplete="off">
       <div id="chat">
         <ul>
         </ul>
@@ -25,8 +24,7 @@
         <i class="far fa-file-image"></i>
         <input type="text" name="message" id="message"></br>
       </div>
-      </br>
-      <input type="submit" id="submitBtn" value="Submit">
+      <input type="submit" id="submitBtn" value="Submit" autocomplete="off">
     </form>
   </div>
   <script src="/socket.io/socket.io.js"></script>

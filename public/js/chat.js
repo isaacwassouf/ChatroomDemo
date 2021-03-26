@@ -27,7 +27,6 @@ const ScollDown =  function () {
 }
 
 const messageReceiverHandler = function(message){
-  const TypingMessage = document.querySelector(".typing");
   const newMessage = document.createElement("li");
   newMessage.classList.add("message");
 
@@ -40,7 +39,7 @@ const messageReceiverHandler = function(message){
 
   document.getElementById("message").value = "";
 
-  typeof TypingMessage != "undefined" ? chat.insertBefore(newMessage, TypingMessage)
+   onTypingMessageShown ? chat.insertBefore(newMessage, document.querySelector(".typing"))
     : chat.appendChild(newMessage);
   ScollDown();
   return newMessage;
@@ -50,9 +49,9 @@ window.onload = function(){
   getUsername();
   ScollDown();
   this.document.getElementById("message").focus();
-  axios.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=evcMQ7Lk8NU&key=AIzaSyDcR01C4n389igmWZDFOsalF-UqNvsV77Y").then(data=>{
+  axios.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=evcMQ7Lk8NU&key=AIzaSyCQdpmZ5y6HntMzAdrPAoBM3xGCvMENFeo").then(data=>{
     console.log(data);
-  })
+  }).catch(error => console.log(error))
 }
 
 socket.on("usernameConnected", (username) => {
@@ -110,6 +109,7 @@ socket.on("typing", (username) => {
     return;
   onTypingMessageShown = true;
   const newMessage = document.createElement("li");
+  newMessage.classList.add(`typing`);
   newMessage.classList.add(`typing-${username}`);
   newMessage.innerHTML = `${username} is typing...`;
   chat.appendChild(newMessage);
@@ -129,7 +129,7 @@ socket.on("msg", messageReceiverHandler);
 
 socket.on("youtube_message", (message)=>{
   const li =  messageReceiverHandler(message);
-  axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${message.code}&key=AIzaSyDcR01C4n389igmWZDFOsalF-UqNvsV77Y`).then(data=>{
+  axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${message.code}&key=AIzaSyCQdpmZ5y6HntMzAdrPAoBM3xGCvMENFeo`).then(data=>{
     const snippet = data.data.items[0].snippet;
     const thumbnail = document.createElement("img");
     const link = document.createElement("a");
@@ -192,6 +192,10 @@ socket.on("disconnectUser", (username) => {
   newMessage.style.backgroundColor = "#d32f2f";
   newMessage.style.color =  "#fff";
   chat.appendChild(newMessage);
+})
+
+socket.on("reconnect", (attemp)=>{
+  getUsername();
 })
 
 document.getElementsByClassName("fa-file-image")[0].addEventListener("click",(event)=>{

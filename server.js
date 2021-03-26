@@ -49,7 +49,7 @@ io.on("connection", (socket)=>{
     });
 
     socket.on("image", (message)=>{
-      const includesExtention = new RegExp("\.[a-zA-Z]+$").test(message.image.name);
+      const includesExtention = new RegExp("\\.[a-zA-Z]+$").test(message.image.name);
       fs.writeFileSync(
         includesExtention ? `./${message.image.name}` : `./${message.image.name}.${message.image.type}`
         , message.image.data
@@ -63,17 +63,12 @@ io.on("connection", (socket)=>{
             type: message.image.type
         }
       });
-    })
+    });
 
     socket.on("disconnect", ()=>{
       io.emit("disconnectUser", username);
       console.log("A user disconnected");
     });
-
-    socket.on("reconnected", ()=>{
-      console.log("A user reconnected");
-      io.emit("usernameConnected", username);
-    })
 });
 
 server.listen(5001, () => {
